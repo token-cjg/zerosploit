@@ -13,11 +13,12 @@ func _ready():
 	self.add_child(instance)
 
 func _on_list_timer_timeout():
-	get_node("HTTPRequest").get("servers.json", self)
+	get_node("HTTPRequest").get_request("servers.json", self)
 
 func handle_results(results):
 	for server in results:
 		var text = ""
-		insert_text_at_cursor(str(server.ip, "\n"))
+		if server.ip != "":
+			insert_text_at_cursor(str(server.ip, "\n"))
 
 	
